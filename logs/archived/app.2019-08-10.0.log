@@ -1,0 +1,75 @@
+2019-08-10 22:02:09,655 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 7256 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:02:09,658 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:02:09,659 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:02:14,445 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.11 seconds (JVM running for 6.035)
+2019-08-10 22:04:58,614 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 9480 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:04:58,617 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:04:58,617 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:05:02,865 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.545 seconds (JVM running for 5.46)
+2019-08-10 22:10:11,673 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 6828 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:10:11,676 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:10:11,677 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:10:16,321 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.95 seconds (JVM running for 5.883)
+2019-08-10 22:12:30,882 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 5856 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:12:30,884 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:12:30,885 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:12:35,887 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.321 seconds (JVM running for 6.206)
+2019-08-10 22:14:40,015 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 11276 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:14:40,019 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:14:40,020 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:14:46,074 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 6.489 seconds (JVM running for 7.519)
+2019-08-10 22:19:11,973 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 17548 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:19:11,981 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:19:11,982 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:19:17,642 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 6.035 seconds (JVM running for 7.18)
+2019-08-10 22:20:00,137 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 5560 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:20:00,139 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:20:00,139 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:20:05,825 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 6.152 seconds (JVM running for 7.313)
+2019-08-10 22:22:06,948 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 4692 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:22:06,951 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:22:06,954 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:22:11,425 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.829 seconds (JVM running for 5.764)
+2019-08-10 22:22:32,119 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 18872 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:22:32,123 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:22:32,123 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:22:36,472 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.705 seconds (JVM running for 5.634)
+2019-08-10 22:24:56,022 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 15612 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:24:56,024 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:24:56,025 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:25:01,191 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.553 seconds (JVM running for 6.648)
+2019-08-10 22:25:30,787 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 12960 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:25:30,790 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:25:30,800 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:25:36,214 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.868 seconds (JVM running for 7.146)
+2019-08-10 22:30:47,323 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 16492 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:30:47,325 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:30:47,326 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:30:52,555 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.642 seconds (JVM running for 6.928)
+2019-08-10 22:32:11,990 DEBUG com.ducanh.duan.controller.HomeController [http-nio-8080-exec-1] principle: anonymousUser
+2019-08-10 22:32:44,600 DEBUG com.ducanh.duan.controller.HomeController [http-nio-8080-exec-7] principle: anonymousUser
+2019-08-10 22:33:18,671 DEBUG com.ducanh.duan.controller.HomeController [http-nio-8080-exec-7] principle: anonymousUser
+2019-08-10 22:34:50,137 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 16932 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:34:50,140 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:34:50,141 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:34:54,342 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.524 seconds (JVM running for 5.481)
+2019-08-10 22:36:20,780 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 6896 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:36:20,785 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:36:20,786 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:36:26,192 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 5.856 seconds (JVM running for 7.022)
+2019-08-10 22:40:27,694 INFO com.ducanh.duan.DuanApplicationTests [main] Starting DuanApplicationTests on DESKTOP-T24INQQ with PID 16980 (started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:40:27,696 DEBUG com.ducanh.duan.DuanApplicationTests [main] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:40:27,697 INFO com.ducanh.duan.DuanApplicationTests [main] No active profile set, falling back to default profiles: default
+2019-08-10 22:40:34,146 INFO com.ducanh.duan.DuanApplicationTests [main] Started DuanApplicationTests in 6.721 seconds (JVM running for 7.626)
+2019-08-10 22:40:51,173 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 7776 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:40:51,175 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:40:51,176 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:40:57,314 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 6.442 seconds (JVM running for 7.104)
+2019-08-10 22:42:45,811 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 2156 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:42:45,813 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:42:45,813 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:42:50,117 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.664 seconds (JVM running for 5.642)
+2019-08-10 22:46:53,714 INFO com.ducanh.duan.DuanApplication [restartedMain] Starting DuanApplication on DESKTOP-T24INQQ with PID 12404 (D:\IdeaProjects\duan\target\classes started by asus in D:\IdeaProjects\duan)
+2019-08-10 22:46:53,717 DEBUG com.ducanh.duan.DuanApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-10 22:46:53,718 INFO com.ducanh.duan.DuanApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-10 22:46:57,897 INFO com.ducanh.duan.DuanApplication [restartedMain] Started DuanApplication in 4.536 seconds (JVM running for 5.465)

@@ -1,0 +1,12 @@
+html, body {
+    height: 100%;
+}
+body {
+    background-image: url("/img/background_instagrams.jpg");
+    background-repeat: no-repeat;
+}
+
+.vertical-center {
+    margin: 0 auto;
+    margin-top: 30%;
+}
