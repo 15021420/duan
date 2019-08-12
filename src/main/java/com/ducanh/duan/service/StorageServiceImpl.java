@@ -28,7 +28,7 @@ import org.springframework.http.MediaType;
 @Service
 public class StorageServiceImpl implements StorageService {
 
-    @Value("${file.upload-dir}")
+    @Value("${fileUploadDir}")
     private String fileUploadDir;
 
     @Override

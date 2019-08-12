@@ -21,7 +21,7 @@ public class ImageServiceImpl implements ImageService {
 
     private static Logger log = LoggerFactory.getLogger(ImageServiceImpl.class);
 
-    @Autowired
+    /*@Autowired*/
     private StorageService storageService;
 
 
