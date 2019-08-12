@@ -5,6 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Trang chủ</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -77,57 +79,31 @@
                             Cập nhật trạng thái của bạn
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form id="upload-file-form" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <textarea  name="postContent" id="postContent"  class="form-control rounded-0" placeholder="Bạn đang nghĩ gì" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" name="customFile"  class="custom-file-input" id="customFile" multiple/>
-                                        <label class="custom-file-label" for="customFile">Đính kèm ảnh</label>
+                                        <input type="file" name="imageFile"  class="custom-file-input" id="imageFile"  multiple/>
+                                        <label class="custom-file-label" for="imageFile">Đính kèm ảnh</label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" style="margin: 1%;">Đăng</button>
+                                <button type="submit" id="submitButton" class="btn btn-primary" style="margin: 1%;">Đăng</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
-                            <ul class="list-group list-group-flush" style="margin: 0 auto;">
+                            <ul class="list-group list-group-flush" style="margin: 0 auto; width: 100%;" th:each="postItem : ${listPost}">
                                 <li class="list-group-item">
-                                    <div class="card">
+                                    <div class="card w-75" style="margin: 0 auto;">
                                         <div class="card-header">
-                                            Featured
+                                            <span th:text="${postItem.createdAt}"></span>
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Featured
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Featured
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            <p th:text="${postItem.postContent}"></p>
                                         </div>
                                     </div>
                                 </li>

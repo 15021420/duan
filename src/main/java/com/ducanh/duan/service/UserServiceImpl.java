@@ -1,6 +1,7 @@
 package com.ducanh.duan.service;
 
 import com.ducanh.duan.dto.UserBasicInfo;
+import com.ducanh.duan.model.Account;
 import com.ducanh.duan.repository.AccountRepository;
 import com.ducanh.duan.repository.UserRepository;
 import org.slf4j.Logger;
@@ -34,4 +35,6 @@ public class UserServiceImpl implements UserService {
         }
         model.addAttribute("userInfo", userBasicInfo);
     }
+
+
 }

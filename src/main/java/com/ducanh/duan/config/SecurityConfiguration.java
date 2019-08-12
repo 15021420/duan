@@ -48,6 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/images/**").hasAuthority("USER")
+                .antMatchers("/user/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check").loginPage("/login").usernameParameter("username").passwordParameter("password").failureUrl("/login?error=true")

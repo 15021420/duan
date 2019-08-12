@@ -5,15 +5,24 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.Size;
 
 public class CreateNewPostVM {
+    private MultipartFile[] imageFile;
 
-    @Size(min = 0, max = 50000, message = "Nội dung từ 0  đến 50000 ký tự")
     private String postContent;
 
     public CreateNewPostVM() {
     }
 
-    public CreateNewPostVM(@Size(min = 0, max = 50000, message = "Nội dung từ 0  đến 50000 ký tự") String postContent) {
+    public CreateNewPostVM(MultipartFile[] imageFile, String postContent) {
+        this.imageFile = imageFile;
         this.postContent = postContent;
+    }
+
+    public MultipartFile[] getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile[] imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getPostContent() {
