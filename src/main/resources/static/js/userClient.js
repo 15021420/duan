@@ -22,13 +22,6 @@ $('document').ready(function () {
 
         buttonSubmit.setAttribute("disabled", "");
 
-        /*var spanSpinner = document.createElement("span");
-        spanSpinner.classList.add("spinner-border-sm", "spinner-border");
-        spanSpinner.setAttribute("role", "status");
-        spanSpinner.setAttribute("aria-hidden", "true");
-
-        buttonSubmit.append(spanSpinner);*/
-
         buttonSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang đăng bài ...';
 
         var token = $("meta[name='_csrf']").attr("content");

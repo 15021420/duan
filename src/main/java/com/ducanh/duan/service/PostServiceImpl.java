@@ -7,6 +7,7 @@ import com.ducanh.duan.model.Account;
 import com.ducanh.duan.model.Post;
 import com.ducanh.duan.model.PostImages;
 import com.ducanh.duan.repository.AccountRepository;
+import com.ducanh.duan.repository.ImagesRepository;
 import com.ducanh.duan.repository.PostImagesRepository;
 import com.ducanh.duan.repository.PostRepository;
 import org.slf4j.Logger;
@@ -36,10 +37,14 @@ public class PostServiceImpl implements PostService {
     private ImageService imageService;
 
     @Autowired
+    private ImagesRepository imagesRepository;
+
+    @Autowired
     private PostImagesRepository postImagesRepository;
 
     @Override
     public Post savePost(CreateNewPostVM createNewPostVM) throws IOException {
+
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 
         Account acc = accountRepository.findByUserName(userName);
@@ -53,11 +58,11 @@ public class PostServiceImpl implements PostService {
 
         postRepository.save(postCreated);
 
-        if (postCreated.getPostId() != 0) {
+        if (postCreated.getPostId() != 0 && createNewPostVM.getImageFile().length != 0 && !createNewPostVM.getImageFile()[0].isEmpty()) {
             List<Integer> listImageId =  imageService.multiImageUpload(createNewPostVM.getImageFile());
 
             for(int imageId : listImageId) {
-                postImagesRepository.save(new PostImages(postCreated.getPostId(), imageId));
+                postImagesRepository.save(new PostImages(imageId, postCreated.getPostId()));
             }
         }
 
@@ -80,11 +85,20 @@ public class PostServiceImpl implements PostService {
 
         List<Post> userPost = postRepository.findByAccountId(acc.getAccountId());
         List<SinglePostOfUserDTO> singlePostOfUserDTOS = new ArrayList<>();
+
+        List<String> dataImage = new ArrayList<>();
         for(Post itemPost : userPost) {
-            singlePostOfUserDTOS.add(new SinglePostOfUserDTO(itemPost.getCreatedAt(), itemPost.getPostContent(), null));
+            dataImage.clear();
+            List<Object[]> listLocation = imagesRepository.findListImageLocationByPostId(itemPost.getPostId());
+
+            for(Object[] dataLocation: listLocation) {
+                dataImage.add("http://localhost:8080/images/get/" + String.valueOf(dataLocation[0]));
+            }
+            singlePostOfUserDTOS.add(new SinglePostOfUserDTO(itemPost.getCreatedAt(), itemPost.getPostContent(), dataImage));
         }
         GetAllPostOfUserDTO getAllPostOfUserDTO = new GetAllPostOfUserDTO();
         getAllPostOfUserDTO.setPostOfUserDTOList(singlePostOfUserDTOS);
+
         return getAllPostOfUserDTO;
     }
 }

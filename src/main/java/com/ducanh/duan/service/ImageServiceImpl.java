@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -60,6 +61,14 @@ public class ImageServiceImpl implements ImageService {
         }
 
         return listImageId;
+    }
+
+    @Override
+    public ResponseEntity<Resource> exportDownload(int id, HttpServletRequest request) throws IOException {
+        Images imageStore = imagesRepository.findByImageId(id);
+        String locationImage = imageStore.getLocation();
+
+        return storageService.downloadFile(locationImage, request);
     }
 
 

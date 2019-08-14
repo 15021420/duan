@@ -1,19 +1,19 @@
 package com.ducanh.duan.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class SinglePostOfUserDTO {
     private Date createdAt;
 
     private String postContent;
 
-    private String[] urlImage;
+    private List<String> urlImage;
 
     public SinglePostOfUserDTO() {
     }
 
-    public SinglePostOfUserDTO(Date createdAt, String postContent, String[] urlImage) {
-
+    public SinglePostOfUserDTO(Date createdAt, String postContent, List<String> urlImage) {
         this.createdAt = createdAt;
         this.postContent = postContent;
         this.urlImage = urlImage;
@@ -35,11 +35,16 @@ public class SinglePostOfUserDTO {
         this.postContent = postContent;
     }
 
-    public String[] getUrlImage() {
+    public List<String> getUrlImage() {
         return urlImage;
     }
 
-    public void setUrlImage(String[] urlImage) {
+    public void setUrlImage(List<String> urlImage) {
         this.urlImage = urlImage;
+    }
+
+    @Override
+    public String toString() {
+        return "createAt: " + createdAt +"\n postContent: " + postContent +"\n urlImage: " + urlImage.size();
     }
 }
