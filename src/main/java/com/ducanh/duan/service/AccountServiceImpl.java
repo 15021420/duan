@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -63,6 +64,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findAccountByUsername(String username) {
+        return null;
+    }
+
+    @Override
+    public Account findAccountOrderByCreatedAtAndActive() {
+        List<Object[]> dataResult = accountRepository.findAccountOrderByCreatedAtAndActive();
+        System.out.println(dataResult);
         return null;
     }
 }

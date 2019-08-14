@@ -8,6 +8,9 @@ import com.ducanh.duan.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +32,10 @@ public class UserController {
 
     @GetMapping
     public String defaultPage(Model model) throws SQLException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
+            return "redirect:/admin";
+        }
         model.addAttribute("createNewPostVM", new CreateNewPostVM());
         userService.initUser(model);
         GetAllPostOfUserDTO getAllPostOfUserDTO = postService.getPostOfUser();
