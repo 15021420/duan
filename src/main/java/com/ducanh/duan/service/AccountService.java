@@ -9,5 +9,4 @@ import java.text.ParseException;
 public interface AccountService {
     Account saveAccount(RegisterAccountVM acc, BindingResult bindingResult) throws ParseException;
     Account findAccountByUsername(String username);
-    Account findAccountOrderByCreatedAtAndActive();
 }

@@ -86,9 +86,10 @@ public class PostServiceImpl implements PostService {
         List<Post> userPost = postRepository.findByAccountId(acc.getAccountId());
         List<SinglePostOfUserDTO> singlePostOfUserDTOS = new ArrayList<>();
 
-        List<String> dataImage = new ArrayList<>();
+
         for(Post itemPost : userPost) {
-            dataImage.clear();
+            List<String> dataImage = new ArrayList<>();
+
             List<Object[]> listLocation = imagesRepository.findListImageLocationByPostId(itemPost.getPostId());
 
             for(Object[] dataLocation: listLocation) {
@@ -98,6 +99,10 @@ public class PostServiceImpl implements PostService {
         }
         GetAllPostOfUserDTO getAllPostOfUserDTO = new GetAllPostOfUserDTO();
         getAllPostOfUserDTO.setPostOfUserDTOList(singlePostOfUserDTOS);
+
+        for(SinglePostOfUserDTO ss : getAllPostOfUserDTO.getPostOfUserDTOList()) {
+            System.out.println(ss.getUrlImage().size());
+        }
 
         return getAllPostOfUserDTO;
     }

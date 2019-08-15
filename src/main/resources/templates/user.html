@@ -115,19 +115,20 @@
                                                         <div class="carousel-item" th:each="itemImage, iterStat  : ${postItem.urlImage}" th:classappend="${iterStat.index == 0} ? active : '' ">
                                                             <img style="background-position: center;" th:src="${itemImage}" width="300px" height="200px" class="d-block w-100" alt="...">
                                                         </div>
-                                                    <a class="carousel-control-prev" th:href="'#carouselExampleIndicators' + ${interParentStat.index}" role="button" data-slide="prev">
+                                                        <a class="carousel-control-prev" th:href="'#carouselExampleIndicators' + ${interParentStat.index}" role="button" data-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                         <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="carousel-control-next" th:href="'#carouselExampleIndicators' + ${interParentStat.index}" role="button" data-slide="next">
+                                                        </a>
+                                                        <a class="carousel-control-next" th:href="'#carouselExampleIndicators' + ${interParentStat.index}" role="button" data-slide="next">
                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                         <span class="sr-only">Next</span>
-                                                    </a>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 <div class="row">
                                                     <p style="width: 100%; margin-top: 1%;" th:text="${postItem.postContent}"></p>
                                                 </div>
-                                                </div></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>

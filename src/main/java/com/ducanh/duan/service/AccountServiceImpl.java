@@ -66,11 +66,4 @@ public class AccountServiceImpl implements AccountService {
     public Account findAccountByUsername(String username) {
         return null;
     }
-
-    @Override
-    public Account findAccountOrderByCreatedAtAndActive() {
-        List<Object[]> dataResult = accountRepository.findAccountOrderByCreatedAtAndActive();
-        System.out.println(dataResult);
-        return null;
-    }
 }
