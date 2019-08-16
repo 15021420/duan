@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -13,6 +15,8 @@
 
 <div class="container">
     <h2>Quản lý user</h2>
+    <a class="btn btn-primary" href="/logout" th:href="@{/logout}">Đăng xuất</a>
+    <br>
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Tất cả user</a></li>
         <li><a data-toggle="tab" href="#menu1">User đang hoạt động</a></li>
@@ -29,6 +33,7 @@
                     <th>Tên đăng nhập</th>
                     <th>Trạng thái</th>
                     <th>Ngày tạo</th>
+                    <th>Chức vụ</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -39,7 +44,14 @@
                     <td th:text="${user.isActive() == true ? 'Đang kích hoạt' : 'Bị khoá'}"></td>
                     <td th:text="${user.getCreatedAt()}"></td>
                     <td>
-                        <button onclick="doLockOrUnlock()" class="btn"><i class="fa fa-lock"></i><span  th:text="${user.isActive() == true ? ' Khoá TK' : ' Mở khoá TK'}"></span></button>
+                        <ul>
+                            <li th:each="dataRole : ${user.getRoleName()}">
+                                <span th:text="${dataRole}"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <button th:attr="onclick=|doLockOrUnlock('${user.getUsername()}', '${user.isActive()}')|"  class="btn"><i class="fa fa-lock"></i><span  th:text="${user.isActive() == true ? ' Khoá TK' : ' Mở khoá TK'}"></span></button>
                     </td>
                 </tr>
                 </tbody>
