@@ -1,8 +1,11 @@
 package com.ducanh.duan.service;
 
+import com.ducanh.duan.controller.vm.CreateCommentOfPostVM;
 import com.ducanh.duan.controller.vm.CreateNewPostVM;
+import com.ducanh.duan.controller.vm.UpdateLikeOfPostVM;
 import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.model.Post;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,4 +15,8 @@ public interface PostService {
     List<Post> getAllPost(int userId);
     Post getOnePost(int userId, int postId);
     GetAllPostOfUserDTO getPostOfUser();
+
+    ResponseEntity<Object> createCommentOfPost(CreateCommentOfPostVM createCommentOfPostVM);
+
+    ResponseEntity<Object> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM);
 }

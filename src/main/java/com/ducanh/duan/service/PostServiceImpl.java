@@ -1,20 +1,18 @@
 package com.ducanh.duan.service;
 
+import com.ducanh.duan.controller.vm.CreateCommentOfPostVM;
 import com.ducanh.duan.controller.vm.CreateNewPostVM;
+import com.ducanh.duan.controller.vm.UpdateLikeOfPostVM;
 import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.dto.SinglePostOfUserDTO;
-import com.ducanh.duan.model.Account;
-import com.ducanh.duan.model.Post;
-import com.ducanh.duan.model.PostImages;
-import com.ducanh.duan.repository.AccountRepository;
-import com.ducanh.duan.repository.ImagesRepository;
-import com.ducanh.duan.repository.PostImagesRepository;
-import com.ducanh.duan.repository.PostRepository;
+import com.ducanh.duan.model.*;
+import com.ducanh.duan.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -41,6 +39,12 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostImagesRepository postImagesRepository;
+
+    @Autowired
+    private CommentsRepository commentsRepository;
+
+    @Autowired
+    private UserLikeRepository likeRepository;
 
     @Override
     public Post savePost(CreateNewPostVM createNewPostVM) throws IOException {
@@ -90,12 +94,19 @@ public class PostServiceImpl implements PostService {
         for(Post itemPost : userPost) {
             List<String> dataImage = new ArrayList<>();
 
-            List<Object[]> listLocation = imagesRepository.findListImageLocationByPostId(itemPost.getPostId());
+            List<Object[]> listImageLocation = imagesRepository.findListImageLocationByPostId(itemPost.getPostId());
 
-            for(Object[] dataLocation: listLocation) {
+            for(Object[] dataLocation: listImageLocation) {
                 dataImage.add("http://localhost:8080/images/get/" + String.valueOf(dataLocation[0]));
             }
-            singlePostOfUserDTOS.add(new SinglePostOfUserDTO(itemPost.getCreatedAt(), itemPost.getPostContent(), dataImage));
+
+            List<Comments> commentsList = commentsRepository.findByPostId(itemPost.getPostId());
+
+            UserLike likedPost = likeRepository.findByAccountIdAndPostId(acc.getAccountId(), itemPost.getPostId());
+
+            int countLikedPost = likeRepository.countByPostId(itemPost.getPostId());
+
+            singlePostOfUserDTOS.add(new SinglePostOfUserDTO(itemPost.getPostId(), itemPost.getCreatedAt(), itemPost.getPostContent(), commentsList, dataImage, likedPost != null, countLikedPost));
         }
         GetAllPostOfUserDTO getAllPostOfUserDTO = new GetAllPostOfUserDTO();
         getAllPostOfUserDTO.setPostOfUserDTOList(singlePostOfUserDTOS);
@@ -105,5 +116,47 @@ public class PostServiceImpl implements PostService {
         }
 
         return getAllPostOfUserDTO;
+    }
+
+    @Override
+    public ResponseEntity<Object> createCommentOfPost(CreateCommentOfPostVM createCommentOfPostVM) {
+        try {
+            Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+
+            Comments commentsInsert = new Comments();
+            commentsInsert.setAccountId(acc.getAccountId());
+            commentsInsert.setContent(createCommentOfPostVM.getCommentContent());
+            commentsInsert.setPostId(createCommentOfPostVM.getPostId());
+            commentsInsert.setCreatedAt(new Date());
+            commentsInsert.setUsername(acc.getUserName());
+
+            commentsRepository.save(commentsInsert);
+
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM) {
+        Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        try {
+            if (updateLikeOfPostVM.isStatusLike()) {
+                UserLike userLike = new UserLike();
+                userLike.setAccountId(acc.getAccountId());
+                userLike.setPostId(updateLikeOfPostVM.getPostId());
+                userLike.setCreatedAt(new Date());
+                likeRepository.save(userLike);
+            } else {
+                UserLike userLikeDelete = likeRepository.findByAccountIdAndPostId(acc.getAccountId(), updateLikeOfPostVM.getPostId());
+                likeRepository.delete(userLikeDelete);
+            }
+
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -40,9 +40,6 @@ public class UserController {
         userService.initUser(model);
         GetAllPostOfUserDTO getAllPostOfUserDTO = postService.getPostOfUser();
         model.addAttribute("listPost", getAllPostOfUserDTO.getPostOfUserDTOList());
-        for (SinglePostOfUserDTO data : getAllPostOfUserDTO.getPostOfUserDTOList()) {
-            log.debug("data Post: {}", data);
-        }
         return "user";
     }
 }

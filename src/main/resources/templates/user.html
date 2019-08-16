@@ -128,19 +128,28 @@
                                                 <div class="row">
                                                     <p style="width: 100%; margin-top: 1%;" th:text="${postItem.postContent}"></p>
                                                 </div>
+                                                <div class="row">
+                                                    <button th:class="${postItem.isLikedPost()} ? 'button button-like liked': 'button button-like'" th:attr="onclick=|doLikePost('${postItem.getPostId()}', '${postItem.isLikedPost()}')|">
+                                                        <i class="fa fa-heart"></i>
+                                                        <span th:text="${postItem.isLikedPost()} ? 'Liked' : 'Like'"> Like </span>
+                                                        <span th:text="${postItem.getCountLikedPost()}"></span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="card-footer">
                                             <ul>
-                                                <li>xinh thế</li>
-                                                <li>xinh thế</li>
-                                                <li>xinh thế</li>
-                                                <li>xinh thế</li>
+                                                <li th:each="dataComment : ${postItem.getPostComment()}">
+                                                    <p><strong th:text="${dataComment.getUsername()}"></strong></p>
+                                                    <p th:text="${dataComment.getContent()}">
+
+                                                    </p>
+                                                </li>
                                             </ul>
                                             <div class="row">
-                                                <textarea style="width: 100%;"></textarea>
-                                                <br>
-                                                <button class="btn btn-primary">bình luận</button>
+                                                    <textarea th:id="'commentContent' + ${postItem.getPostId()}" style="width: 100%; margin: 1%;"></textarea>
+                                                    <br>
+                                                    <button th:attr="onclick=|doCommentPost('${postItem.getPostId()}')|" style="margin: 1%;" class="btn btn-primary">bình luận</button>
                                             </div>
 
                                         </div>

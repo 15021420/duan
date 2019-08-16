@@ -32,4 +32,7 @@ public class Comments {
 
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    @Column(name = "username")
+    private String username;
 }
