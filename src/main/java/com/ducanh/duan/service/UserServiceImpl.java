@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
             userBasicInfo.setFullName(String.valueOf(dataResult.get(0)[0]));
             userBasicInfo.setBirthDay(String.valueOf(dataResult.get(0)[1]));
             userBasicInfo.setLocation(String.valueOf(dataResult.get(0)[2]));
+            userBasicInfo.setUrlAvatar(String.valueOf(dataResult.get(0)[3]));
         }
         model.addAttribute("userInfo", userBasicInfo);
     }

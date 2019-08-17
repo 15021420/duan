@@ -5,6 +5,7 @@ import com.ducanh.duan.controller.vm.CreateNewPostVM;
 import com.ducanh.duan.controller.vm.UpdateLikeOfPostVM;
 import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.dto.SinglePostOfUserDTO;
+import com.ducanh.duan.dto.UpdateLikeOfPostDTO;
 import com.ducanh.duan.model.*;
 import com.ducanh.duan.repository.*;
 import org.slf4j.Logger;
@@ -87,7 +88,7 @@ public class PostServiceImpl implements PostService {
     public GetAllPostOfUserDTO getPostOfUser() {
         Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        List<Post> userPost = postRepository.findByAccountId(acc.getAccountId());
+        List<Post> userPost = postRepository.findByAccountIdOrderByCreatedAtDesc(acc.getAccountId());
         List<SinglePostOfUserDTO> singlePostOfUserDTOS = new ArrayList<>();
 
 
@@ -139,24 +140,29 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Object> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM) {
+    public ResponseEntity<UpdateLikeOfPostDTO> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM) {
         Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 
         try {
             if (updateLikeOfPostVM.isStatusLike()) {
-                UserLike userLike = new UserLike();
-                userLike.setAccountId(acc.getAccountId());
-                userLike.setPostId(updateLikeOfPostVM.getPostId());
-                userLike.setCreatedAt(new Date());
-                likeRepository.save(userLike);
+
+                    UserLike userLike = new UserLike();
+                    userLike.setAccountId(acc.getAccountId());
+                    userLike.setPostId(updateLikeOfPostVM.getPostId());
+                    userLike.setCreatedAt(new Date());
+                    likeRepository.save(userLike);
+
+
             } else {
                 UserLike userLikeDelete = likeRepository.findByAccountIdAndPostId(acc.getAccountId(), updateLikeOfPostVM.getPostId());
                 likeRepository.delete(userLikeDelete);
             }
-
-            return new ResponseEntity<>("success", HttpStatus.OK);
+            UpdateLikeOfPostDTO updateLikeOfPostDTO = new UpdateLikeOfPostDTO(updateLikeOfPostVM.getPostId(), updateLikeOfPostVM.isStatusLike());
+            return new ResponseEntity<>(updateLikeOfPostDTO, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+            UpdateLikeOfPostDTO updateLikeOfPostDTO = new UpdateLikeOfPostDTO(updateLikeOfPostVM.getPostId(), !updateLikeOfPostVM.isStatusLike());
+            return new ResponseEntity<>(updateLikeOfPostDTO, HttpStatus.BAD_REQUEST);
         }
     }
 }

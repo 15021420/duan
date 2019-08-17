@@ -34,6 +34,8 @@ public class AccountServiceImpl implements AccountService {
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+    private static String urlAvatar = "/img/icon_default_user1.png";
+
     @Override
     public Account saveAccount(RegisterAccountVM acc, BindingResult bindingResult) throws ParseException {
         Account accountSelect = accountRepository.findByUserName(acc.getUsername());
@@ -49,6 +51,7 @@ public class AccountServiceImpl implements AccountService {
         accountInsert.setBirthday(simpleDateFormat.parse(acc.getBirthDay()));
         accountInsert.setActive(true);
         accountInsert.setDisplayName(acc.getFullName());
+        accountInsert.setUrlAvatar(urlAvatar);
 
         accountRepository.save(accountInsert);
 

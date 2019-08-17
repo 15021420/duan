@@ -4,6 +4,7 @@ import com.ducanh.duan.controller.vm.CreateCommentOfPostVM;
 import com.ducanh.duan.controller.vm.CreateNewPostVM;
 import com.ducanh.duan.controller.vm.UpdateLikeOfPostVM;
 import com.ducanh.duan.dto.GetAllPostOfUserDTO;
+import com.ducanh.duan.dto.UpdateLikeOfPostDTO;
 import com.ducanh.duan.model.Post;
 import org.springframework.http.ResponseEntity;
 
@@ -18,5 +19,5 @@ public interface PostService {
 
     ResponseEntity<Object> createCommentOfPost(CreateCommentOfPostVM createCommentOfPostVM);
 
-    ResponseEntity<Object> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM);
+    ResponseEntity<UpdateLikeOfPostDTO> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM);
 }

@@ -1,11 +1,13 @@
-function doLikePost(postId, statusLike) {
+function doLikePost(postId) {
     var token = $("meta[name='_csrf']").attr("content");
-    var statusLike = !(statusLike === 'true');
+    var statusLike = $('#checkLiked' + postId).val() === 'true';
 
     var dataLike = {
       "postId": postId,
-      "statusLike": statusLike
+      "statusLike": !statusLike
     };
+
+    console.log(dataLike);
 
     $.ajax({
         headers: {
@@ -21,7 +23,20 @@ function doLikePost(postId, statusLike) {
         cache: false,
         timeout: 1000000,
         success: function(data, textStatus, jqXHR) {
-            console.log(jqXHR);
+            var postIdUpdate = data['postId'];
+            var statusLikeUpdate = data['statusLike'];
+            var buttonLike = document.getElementById('btnLikePost' + postIdUpdate);
+            var countLikePost = document.getElementById('countLikedPost' + postIdUpdate);
+            var valueLike = countLikePost.innerText;
+            if(statusLikeUpdate) {
+                buttonLike.classList.add('liked');
+                $('#checkLiked' + postId).val(statusLikeUpdate);
+                countLikePost.textContent = parseInt(valueLike, 0)  + 1;
+            } else {
+                buttonLike.classList.remove("liked");
+                $('#checkLiked' + postId).val(statusLikeUpdate);
+                countLikePost.textContent = parseInt(valueLike, 0)  - 1;
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);

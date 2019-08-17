@@ -7,14 +7,16 @@ public class UserBasicInfo implements Serializable {
     private String fullName;
     private String birthDay;
     private String location;
+    private String urlAvatar;
 
     public UserBasicInfo() {
     }
 
-    public UserBasicInfo(String fullName, String birthDay, String location) {
+    public UserBasicInfo(String fullName, String birthDay, String location, String urlAvatar) {
         this.fullName = fullName;
         this.birthDay = birthDay;
         this.location = location;
+        this.urlAvatar = urlAvatar;
     }
 
     public String getFullName() {
@@ -39,5 +41,13 @@ public class UserBasicInfo implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
     }
 }

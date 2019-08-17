@@ -42,4 +42,10 @@ public class UserController {
         model.addAttribute("listPost", getAllPostOfUserDTO.getPostOfUserDTOList());
         return "user";
     }
+
+    @GetMapping("/setting")
+    public String settingPage() {
+        return "user_setting";
+    }
+
 }

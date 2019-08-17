@@ -34,14 +34,14 @@
                         <a class="nav-link" href="#">Cá nhân</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cài đặt</a>
+                        <a class="nav-link" href="/user/setting" th:href="@{/user/setting}">Cài đặt</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout" th:href="@{/logout}">Đăng xuất</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm bạn bè" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" method="get" action="/friend/search" th:action="@{/friend/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm bạn bè" aria-label="Search" name="q" value="">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Tìm</button>
                 </form>
             </div>
@@ -52,7 +52,7 @@
             <div class="col-4">
                 <div class="container">
                     <div class="row">
-                        <img alt="image" src="/img/anhgirl1.png" th:src="@{/img/anhgirl1.png}" width="200px" height="200px" style="border-radius: 50%; margin: 0 auto;"/>
+                        <img alt="image" th:src="${userInfo.urlAvatar}" width="150px" height="150px" style="border-radius: 50%; margin: 0 auto;"/>
                     </div>
                     <br>
                     <div class="row">
@@ -129,10 +129,14 @@
                                                     <p style="width: 100%; margin-top: 1%;" th:text="${postItem.postContent}"></p>
                                                 </div>
                                                 <div class="row">
-                                                    <button th:class="${postItem.isLikedPost()} ? 'button button-like liked': 'button button-like'" th:attr="onclick=|doLikePost('${postItem.getPostId()}', '${postItem.isLikedPost()}')|">
+                                                    <button th:id="'btnLikePost' + ${postItem.getPostId()}" th:class="${postItem.isLikedPost()} ? 'button button-like liked': 'button button-like'" th:attr="onclick=|doLikePost('${postItem.getPostId()}')|">
                                                         <i class="fa fa-heart"></i>
-                                                        <span th:text="${postItem.isLikedPost()} ? 'Liked' : 'Like'"> Like </span>
-                                                        <span th:text="${postItem.getCountLikedPost()}"></span>
+                                                        <span> Like </span>
+                                                        <input type="hidden" th:id="'checkLiked' + ${postItem.getPostId()}" th:value="${postItem.isLikedPost()}"/>
+                                                        <!-- if like  = getCountLikedPost
+                                                        if nolike = getCountLikedPost-1
+                                                        van update database-->
+                                                        <span th:id="'countLikedPost' + ${postItem.getPostId()}" th:text="${postItem.getCountLikedPost()}"></span>
                                                     </button>
                                                 </div>
                                             </div>

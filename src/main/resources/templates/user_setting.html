@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>Cài đặt tài khoản</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="d-flex flex-column  align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm sticky-top" style="overflow:hidden;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h4 style="text-align: center">Trang cài đặt  tài khoản</h4> <br>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="position: sticky;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Đổi avatar</a></li>
+            <li><a data-toggle="tab" href="#menu1">Đổi mật khẩu</a></li>
+            <li><a data-toggle="tab" href="#menu1">Xem album ảnh</a></li>
+        </ul>
+
+        <div class="tab-content">
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <form id="form-update-avatar" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="avatarFile"  class="custom-file-input" id="avatarFile" accept="image/*"  multiple/>
+                            <label class="custom-file-label" for="avatarFile">Đính kèm ảnh</label>
+                        </div>
+                    </div>
+                    <button type="submit">Cập nhật avatar</button>
+                </form>
+            </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h4>203 user bị khoá</h4>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <h3>200 ảnh chưa được xử lý report</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

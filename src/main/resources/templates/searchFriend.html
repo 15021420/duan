@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Search friend</title>
+    <link rel="stylesheet" type="text/css" href="/css/searchFriend.css" th:href="@{/css/searchFriend.css}"/>
+</head>
+<body>
+    <div class="d-flex flex-column  align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm sticky-top" style="overflow:hidden;">
+        <a class="navbar-brand" href="/user" th:href="@{/user}">
+            <img src="/img/instagram1.png" th:src="@{/img/instagram1.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+            Instagram
+        </a>
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h4 style="text-align: center">Trang tìm kiếm bạn bè</h4> <br>
+            </div>
+        </nav>
+        <a class="btn btn-primary" th:href="@{/user}">Quay lại</a>
+    </div>
+    <div class="container" style="position: sticky;">
+        <div class="row">
+            <ul class="list-group" style="width: 100%;">
+                <li class="list-group-item" th:each="itemUser : ${listDataSearch}">
+                    <div class="row">
+                        <p><img th:src="${itemUser.getUrlAvatar()}" width="20px" height="20px" style="border-radius: 50%; margin: 0 auto;"/><strong th:text="' ' + ${itemUser.getDisplayName()}"></strong></p>
+                    </div>
+                    <p th:text="'Địa chỉ: ' + ${itemUser.getTinh()}"></p>
+                    <p th:text="'Nick name: ' + ${itemUser.getUsername()}"></p>
+                    <div class="row">
+                        <button class="btn btn-success">Kết bạn</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

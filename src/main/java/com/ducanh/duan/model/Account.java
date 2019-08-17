@@ -34,8 +34,8 @@ public class Account {
     @Column(name = "display_name")
     private String displayName;
 
-    @Column(name = "image_id")
-    private int imageId;
+    @Column(name = "url_avatar")
+    private String urlAvatar;
 
     @Column(name = "birthday")
     private Date birthday;

@@ -3,6 +3,7 @@ package com.ducanh.duan.controller;
 import com.ducanh.duan.controller.vm.CreateCommentOfPostVM;
 import com.ducanh.duan.controller.vm.CreateNewPostVM;
 import com.ducanh.duan.controller.vm.UpdateLikeOfPostVM;
+import com.ducanh.duan.dto.UpdateLikeOfPostDTO;
 import com.ducanh.duan.model.Post;
 import com.ducanh.duan.service.PostService;
 import org.slf4j.Logger;
@@ -44,7 +45,7 @@ public class PostController {
 
     @PostMapping("/update-like")
     @ResponseBody
-    public ResponseEntity<Object> updateLikeOfPost(@RequestBody UpdateLikeOfPostVM updateLikeOfPostVM) {
+    public ResponseEntity<UpdateLikeOfPostDTO> updateLikeOfPost(@RequestBody UpdateLikeOfPostVM updateLikeOfPostVM) {
         return postService.updateLikeOfPost(updateLikeOfPostVM);
     }
 }
