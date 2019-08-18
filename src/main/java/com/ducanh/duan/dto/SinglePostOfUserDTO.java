@@ -21,6 +21,10 @@ public class SinglePostOfUserDTO {
 
     private int countLikedPost;
 
+    private String displayName;
+
+    private String urlAvatar;
+
     public SinglePostOfUserDTO() {
     }
 
@@ -32,6 +36,18 @@ public class SinglePostOfUserDTO {
         this.urlImage = urlImage;
         this.isLikedPost = isLikedPost;
         this.countLikedPost = countLikedPost;
+    }
+
+    public SinglePostOfUserDTO(int postId, Date createdAt, String postContent, List<Comments> postComment, List<String> urlImage, boolean isLikedPost, int countLikedPost, String displayName, String urlAvatar) {
+        this.postId = postId;
+        this.createdAt = createdAt;
+        this.postContent = postContent;
+        this.postComment = postComment;
+        this.urlImage = urlImage;
+        this.isLikedPost = isLikedPost;
+        this.countLikedPost = countLikedPost;
+        this.displayName = displayName;
+        this.urlAvatar = urlAvatar;
     }
 
     public int getPostId() {
@@ -88,6 +104,22 @@ public class SinglePostOfUserDTO {
 
     public void setCountLikedPost(int countLikedPost) {
         this.countLikedPost = countLikedPost;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
     }
 
     @Override

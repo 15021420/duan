@@ -98,7 +98,7 @@ public class PostServiceImpl implements PostService {
             List<Object[]> listImageLocation = imagesRepository.findListImageLocationByPostId(itemPost.getPostId());
 
             for(Object[] dataLocation: listImageLocation) {
-                dataImage.add("http://localhost:8080/images/get/" + String.valueOf(dataLocation[0]));
+                dataImage.add("/images/get/" + String.valueOf(dataLocation[0]));
             }
 
             List<Comments> commentsList = commentsRepository.findByPostId(itemPost.getPostId());
@@ -164,5 +164,46 @@ public class PostServiceImpl implements PostService {
             UpdateLikeOfPostDTO updateLikeOfPostDTO = new UpdateLikeOfPostDTO(updateLikeOfPostVM.getPostId(), !updateLikeOfPostVM.isStatusLike());
             return new ResponseEntity<>(updateLikeOfPostDTO, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @Override
+    public GetAllPostOfUserDTO getPostOfFriend() {
+        Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        List<Object[]> userPost = postRepository.findPostByFriendOfAccount(acc.getAccountId());
+        List<SinglePostOfUserDTO> singlePostOfUserDTOS = new ArrayList<>();
+
+
+        for(Object[] itemPost : userPost) {
+            List<String> dataImage = new ArrayList<>();
+
+            int accountIdWritePost = Integer.parseInt(String.valueOf(itemPost[1]));
+
+            Account accWritePost = accountRepository.findByAccountId(accountIdWritePost);
+
+            int postIdSelect = Integer.parseInt(String.valueOf(itemPost[0]));
+
+            List<Object[]> listImageLocation = imagesRepository.findListImageLocationByPostId(postIdSelect);
+
+            for(Object[] dataLocation: listImageLocation) {
+                dataImage.add("/images/get/" + String.valueOf(dataLocation[0]));
+            }
+
+            List<Comments> commentsList = commentsRepository.findByPostId(postIdSelect);
+
+            UserLike likedPost = likeRepository.findByAccountIdAndPostId(acc.getAccountId(), postIdSelect);
+
+            int countLikedPost = likeRepository.countByPostId(postIdSelect);
+
+            singlePostOfUserDTOS.add(new SinglePostOfUserDTO(postIdSelect, (Date)itemPost[2], String.valueOf(itemPost[3]), commentsList, dataImage, likedPost != null, countLikedPost, accWritePost.getDisplayName(), accWritePost.getUrlAvatar()));
+        }
+        GetAllPostOfUserDTO getAllPostOfUserDTO = new GetAllPostOfUserDTO();
+        getAllPostOfUserDTO.setPostOfUserDTOList(singlePostOfUserDTOS);
+
+        for(SinglePostOfUserDTO ss : getAllPostOfUserDTO.getPostOfUserDTOList()) {
+            System.out.println(ss.getUrlImage().size());
+        }
+
+        return getAllPostOfUserDTO;
     }
 }

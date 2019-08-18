@@ -14,5 +14,7 @@ import java.util.List;
 public interface ImageService {
     List<Integer> multiImageUpload(MultipartFile[] fileToUpload) throws IOException;
 
+    Integer singleImageUpload(MultipartFile fileToUpload) throws IOException;
+
     ResponseEntity<Resource> exportDownload(int id, HttpServletRequest request) throws IOException;
 }

@@ -20,4 +20,6 @@ public interface PostService {
     ResponseEntity<Object> createCommentOfPost(CreateCommentOfPostVM createCommentOfPostVM);
 
     ResponseEntity<UpdateLikeOfPostDTO> updateLikeOfPost(UpdateLikeOfPostVM updateLikeOfPostVM);
+
+    GetAllPostOfUserDTO getPostOfFriend();
 }

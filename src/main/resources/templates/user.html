@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <title>Trang chủ</title>
+    <title>Cá nhân</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trang chủ</a>
+                        <a class="nav-link" href="/news-feed" th:href="@{/news-feed}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cá nhân</a>
+                        <a class="nav-link" href="/user" th:href="@{/user}">Cá nhân</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/setting" th:href="@{/user/setting}">Cài đặt</a>

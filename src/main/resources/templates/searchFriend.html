@@ -40,11 +40,14 @@
                     <p th:text="'Địa chỉ: ' + ${itemUser.getTinh()}"></p>
                     <p th:text="'Nick name: ' + ${itemUser.getUsername()}"></p>
                     <div class="row">
-                        <button class="btn btn-success">Kết bạn</button>
+                        <button th:id="'btnRequestFriend' + ${itemUser.getAccountId()}" th:if="${itemUser.getStatusFriend() == 1}" class="btn btn-success" th:attr="onclick=|doSendRequestAddFriend('${itemUser.getAccountId()}')|">Kết bạn</button>
+                        <button th:id="'btnRequestFriend' + ${itemUser.getAccountId()}" th:if="${itemUser.getStatusFriend() == 2}" class="btn btn-success" th:attr="onclick=|doRemoveRequestAddFriend('${itemUser.getAccountId()}')|">Huỷ lời mời kết bạn</button>
+                        <button th:id="'btnRequestFriend' + ${itemUser.getAccountId()}" th:if="${itemUser.getStatusFriend() == 3}" class="btn btn-success" th:attr="onclick=|doUnfriend('${itemUser.getAccountId()}')|">Đã kết bạn</button>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+<script src="/js/searchFriendClient.js" th:src="@{/js/searchFriendClient.js}"></script>
 </body>
 </html>

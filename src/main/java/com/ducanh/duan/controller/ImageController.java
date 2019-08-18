@@ -18,7 +18,7 @@ public class ImageController {
 
     @GetMapping("/get/{id}")
     @ResponseBody
-    public ResponseEntity<Resource> uploadImageFunc(@PathVariable(name = "id") int id, HttpServletRequest request) throws IOException {
+    public ResponseEntity<Resource> getImageResource(@PathVariable(name = "id") int id, HttpServletRequest request) throws IOException {
         return imageService.exportDownload(id, request);
     }
 }

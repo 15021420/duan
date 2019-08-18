@@ -1,5 +1,6 @@
 package com.ducanh.duan.controller;
 
+import com.ducanh.duan.controller.vm.ChangeAvatarVM;
 import com.ducanh.duan.controller.vm.CreateNewPostVM;
 import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.dto.SinglePostOfUserDTO;
@@ -8,14 +9,18 @@ import com.ducanh.duan.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
@@ -44,8 +49,13 @@ public class UserController {
     }
 
     @GetMapping("/setting")
-    public String settingPage() {
+    public String settingPage(Model model) {
+        model.addAttribute("albumImage", userService.getAllImageOfUser());
         return "user_setting";
     }
 
+    @PostMapping("/change-avatar")
+    public ResponseEntity<Object> changeAvatar(@ModelAttribute ChangeAvatarVM changeAvatarVM) throws IOException {
+        return userService.changeAvatar(changeAvatarVM);
+    }
 }

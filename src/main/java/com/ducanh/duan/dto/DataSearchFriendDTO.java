@@ -24,10 +24,12 @@ public class DataSearchFriendDTO {
 
     private String displayName;
 
+    private int statusFriend;
+
     public DataSearchFriendDTO() {
     }
 
-    public DataSearchFriendDTO(String accountId, String username, String xa, String huyen, String tinh, String school, String urlAvatar, String favorite, String birthDay, String displayName) {
+    public DataSearchFriendDTO(String accountId, String username, String xa, String huyen, String tinh, String school, String urlAvatar, String favorite, String birthDay, String displayName, int statusFriend) {
         this.accountId = accountId;
         this.username = username;
         this.xa = xa;
@@ -38,6 +40,7 @@ public class DataSearchFriendDTO {
         this.favorite = favorite;
         this.birthDay = birthDay;
         this.displayName = displayName;
+        this.statusFriend = statusFriend;
     }
 
     public String getAccountId() {
@@ -118,5 +121,13 @@ public class DataSearchFriendDTO {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public int getStatusFriend() {
+        return statusFriend;
+    }
+
+    public void setStatusFriend(int statusFriend) {
+        this.statusFriend = statusFriend;
     }
 }

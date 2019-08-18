@@ -10,6 +10,7 @@
     <title>Cài đặt tài khoản</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/userSettingStyle.css" th:href="@{/css/userSettingStyle.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
@@ -22,35 +23,34 @@
         </nav>
     </div>
     <div class="container" style="position: sticky;">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Đổi avatar</a></li>
-            <li><a data-toggle="tab" href="#menu1">Đổi mật khẩu</a></li>
-            <li><a data-toggle="tab" href="#menu1">Xem album ảnh</a></li>
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#updateAvatar" aria-controls="updateAvatar" role="tab" data-toggle="tab">Cập nhật avatar</a></li>
+            <li role="presentation"><a href="#updatePassword" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+            <li role="presentation"><a href="#Album" aria-controls="messages" role="tab" data-toggle="tab">Album ảnh</a></li>
         </ul>
-
+        <!-- Tab panes -->
         <div class="tab-content">
-            </div>
-            <div id="menu1" class="tab-pane fade">
-                <form id="form-update-avatar" enctype="multipart/form-data">
+            <div role="tabpanel" class="tab-pane active" id="updateAvatar">
+                <form id="upload-file-form" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="custom-file">
-                            <input type="file" name="avatarFile"  class="custom-file-input" id="avatarFile" accept="image/*"  multiple/>
-                            <label class="custom-file-label" for="avatarFile">Đính kèm ảnh</label>
+                            <input type="file" name="avatar"  class="custom-file-input" id="avatar" accept="image/*"/>
+                            <label class="custom-file-label" for="avatar">Đính kèm ảnh</label>
                         </div>
                     </div>
-                    <button type="submit">Cập nhật avatar</button>
+                    <button type="submit" id="submitButton" class="btn btn-success" style="margin: 1%;">Cập nhật</button>
                 </form>
             </div>
-            </div>
-            <div id="menu2" class="tab-pane fade">
-                <h4>203 user bị khoá</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-            </div>
-            <div id="menu3" class="tab-pane fade">
-                <h3>200 ảnh chưa được xử lý report</h3>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <div role="tabpanel" class="tab-pane" id="updatePassword">This is Profile content</div>
+            <div role="tabpanel" class="tab-pane" id="Album">
+                <div class="container">
+                    <div class="column">
+                        <img width="100px" height="100px" th:src="'/images/get/' + ${imageSrc}" style="width:100%" th:each="imageSrc : ${albumImage}"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+<script src="/js/userSettingClient.js" th:src="@{/js/userSettingClient.js}"></script>
 </body>
 </html>

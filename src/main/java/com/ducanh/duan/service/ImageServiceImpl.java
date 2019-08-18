@@ -64,6 +64,21 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public Integer singleImageUpload(MultipartFile fileToUpload) throws IOException {
+        Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+        String locationImage = storageService.storeFile(fileToUpload);
+        Images images = new Images();
+        images.setAccountId(acc.getAccountId());
+        images.setLocation(locationImage);
+        images.setCreatedAt(new Date());
+        images.setHidden(false);
+
+        imagesRepository.save(images);
+
+        return images.getImageId();
+    }
+
+    @Override
     public ResponseEntity<Resource> exportDownload(int id, HttpServletRequest request) throws IOException {
         Images imageStore = imagesRepository.findByImageId(id);
         String locationImage = imageStore.getLocation();
