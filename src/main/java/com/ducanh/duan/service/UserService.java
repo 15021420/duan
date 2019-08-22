@@ -15,4 +15,8 @@ public interface UserService {
     ResponseEntity<Object> changeAvatar(ChangeAvatarVM changeAvatarVM) throws IOException;
 
     List<String> getAllImageOfUser();
+
+    void getNotify(Model model);
+
+    ResponseEntity<Object> changeStatusCheckNotify();
 }

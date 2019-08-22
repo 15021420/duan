@@ -20,6 +20,11 @@ public class RequestAddFriend {
     @Column(name = "create_at")
     private Date createdAt;
 
+    @Column(name = "is_checked", columnDefinition = "boolean default false")
+    private boolean isChecked = false;
+
+    private String accountDisplayNameFrom;
+
     public RequestAddFriend() {
     }
 
@@ -27,6 +32,14 @@ public class RequestAddFriend {
         this.accountIdFrom = accountIdFrom;
         this.accountIdTo = accountIdTo;
         this.createdAt = createdAt;
+    }
+
+    public RequestAddFriend(int accountIdFrom, int accountIdTo, Date createdAt, boolean isChecked, String accountDisplayNameFrom) {
+        this.accountIdFrom = accountIdFrom;
+        this.accountIdTo = accountIdTo;
+        this.createdAt = createdAt;
+        this.isChecked = isChecked;
+        this.accountDisplayNameFrom = accountDisplayNameFrom;
     }
 
     public int getRequestAddFriendId() {
@@ -59,5 +72,21 @@ public class RequestAddFriend {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public String getAccountDisplayNameFrom() {
+        return accountDisplayNameFrom;
+    }
+
+    public void setAccountDisplayNameFrom(String accountDisplayNameFrom) {
+        this.accountDisplayNameFrom = accountDisplayNameFrom;
     }
 }

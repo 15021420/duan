@@ -1,5 +1,6 @@
 package com.ducanh.duan.controller;
 
+import com.ducanh.duan.controller.vm.AddFriendVM;
 import com.ducanh.duan.controller.vm.RemoveAddFriendVM;
 import com.ducanh.duan.controller.vm.RequestAddFriendVM;
 import com.ducanh.duan.controller.vm.UnfriendVM;
@@ -47,5 +48,10 @@ public class FriendController {
     @ResponseBody
     public ResponseEntity<Object> doUnfriend(@RequestBody UnfriendVM unfriendVM) {
         return friendService.unFriend(unfriendVM);
+    }
+
+    @PostMapping("/add-friend")
+    public ResponseEntity<Object> addFriend(@RequestBody AddFriendVM addFriendVM) {
+        return friendService.addFriend(addFriendVM);
     }
 }

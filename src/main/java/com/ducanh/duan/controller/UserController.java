@@ -15,10 +15,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,7 +52,20 @@ public class UserController {
     }
 
     @PostMapping("/change-avatar")
+    @ResponseBody
     public ResponseEntity<Object> changeAvatar(@ModelAttribute ChangeAvatarVM changeAvatarVM) throws IOException {
         return userService.changeAvatar(changeAvatarVM);
+    }
+
+    @GetMapping("/notify")
+    public String getNotify(Model model) {
+        userService.getNotify(model);
+        return  "notify";
+    }
+
+    @PostMapping("/notify-set-checked")
+    @ResponseBody
+    public ResponseEntity<Object> changeStatusCheckNotify() {
+        return userService.changeStatusCheckNotify();
     }
 }

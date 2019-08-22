@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>Thông báo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="d-flex flex-column  align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm sticky-top" style="overflow:hidden;">
+        <a class="navbar-brand" href="/user" th:href="@{/user}">
+            <img src="/img/instagram1.png" th:src="@{/img/instagram1.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+            Instagram
+        </a>
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/news-feed" th:href="@{/news-feed}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user" th:href="@{/user}">Cá nhân</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/setting" th:href="@{/user/setting}">Cài đặt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/notify" th:href="@{/user/notify}">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" th:href="@{/logout}">Đăng xuất</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="get" action="/friend/search" th:action="@{/friend/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm bạn bè" aria-label="Search" name="q" value="">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Tìm</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="position: sticky;">
+        <div class="row">
+            <h2>Thông báo <span class="badge badge-light" th:text="${countNotify}"></span></h2>
+        </div>
+        <div class="row">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="itemNotify : ${listNotifyNotCheck}">
+                    <p th:text="${itemNotify.getAccountDisplayNameFrom()} + ' đã gửi lời mời kết bạn'"></p>
+                    <button  class="btn btn-primary btn-sm" th:attr="onclick=|doAddFriend('${itemNotify.getAccountIdFrom()}')|">Chấp nhận</button>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+    </div>
+<script src="/js/notifyClient.js" th:src="@{/js/notifyClient.js}"></script>
+</body>
+</html>

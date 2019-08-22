@@ -1,5 +1,6 @@
 package com.ducanh.duan.service;
 
+import com.ducanh.duan.controller.vm.AddFriendVM;
 import com.ducanh.duan.controller.vm.RemoveAddFriendVM;
 import com.ducanh.duan.controller.vm.RequestAddFriendVM;
 import com.ducanh.duan.controller.vm.UnfriendVM;
@@ -16,4 +17,6 @@ public interface FriendService {
     ResponseEntity<Object> removeAddFriendVM(RemoveAddFriendVM removeAddFriendVM);
 
     ResponseEntity<Object> unFriend(UnfriendVM unfriendVM);
+
+    ResponseEntity<Object> addFriend(AddFriendVM addFriendVM);
 }

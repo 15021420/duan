@@ -1,5 +1,6 @@
 package com.ducanh.duan.service;
 
+import com.ducanh.duan.controller.vm.AddFriendVM;
 import com.ducanh.duan.controller.vm.RemoveAddFriendVM;
 import com.ducanh.duan.controller.vm.RequestAddFriendVM;
 import com.ducanh.duan.controller.vm.UnfriendVM;
@@ -97,6 +98,7 @@ public class FriendServiceImpl implements FriendService {
             requestAddFriend.setAccountIdFrom(acc.getAccountId());
             requestAddFriend.setAccountIdTo(requestAddFriendVM.getAccountIdRequest());
             requestAddFriend.setCreatedAt(new Date());
+            requestAddFriend.setAccountDisplayNameFrom(acc.getDisplayName());
             requestAddFriendRepository.save(requestAddFriend);
 
             return new ResponseEntity<>("success", HttpStatus.OK);
@@ -137,6 +139,29 @@ public class FriendServiceImpl implements FriendService {
                 friendRepository.delete(relation2);
             }return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> addFriend(AddFriendVM addFriendVM) {
+
+        try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+            Account acc = accountRepository.findByUserName(username);
+
+            RequestAddFriend requestAddFriend = requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(addFriendVM.getAccountIdFrom(), acc.getAccountId());
+
+            if (requestAddFriend != null) requestAddFriendRepository.delete(requestAddFriend);
+
+            RequestAddFriend requestAddFriendReverse = requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(acc.getAccountId(), addFriendVM.getAccountIdFrom());
+
+            if (requestAddFriendReverse != null) requestAddFriendRepository.delete(requestAddFriendReverse);
+
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
     }

@@ -5,8 +5,10 @@ import com.ducanh.duan.dto.AlbumImageDTO;
 import com.ducanh.duan.dto.UserBasicInfo;
 import com.ducanh.duan.model.Account;
 import com.ducanh.duan.model.Images;
+import com.ducanh.duan.model.RequestAddFriend;
 import com.ducanh.duan.repository.AccountRepository;
 import com.ducanh.duan.repository.ImagesRepository;
+import com.ducanh.duan.repository.RequestAddFriendRepository;
 import com.ducanh.duan.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ImagesRepository imagesRepository;
+
+    @Autowired
+    private RequestAddFriendRepository requestAddFriendRepository;
 
     private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     private Object data;
@@ -90,5 +95,35 @@ public class UserServiceImpl implements UserService {
         return listImageIdOfUser;
     }
 
+    @Override
+    public void getNotify(Model model) {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account acc = accountRepository.findByUserName(username);
+
+        List<RequestAddFriend> listNotifyNotifyNotCheck = requestAddFriendRepository.findByAccountIdToAndIsCheckedOrderByCreatedAtDesc(acc.getAccountId(), false);
+
+        List<RequestAddFriend> listNotifyNotifyChecked= requestAddFriendRepository.findByAccountIdToAndIsCheckedOrderByCreatedAtDesc(acc.getAccountId(), true);
+
+       int countNotify = requestAddFriendRepository.countByAccountIdTo(acc.getAccountId());
+
+        model.addAttribute("listNotifyChecked", listNotifyNotifyChecked);
+        model.addAttribute("listNotifyNotCheck", listNotifyNotifyNotCheck);
+        model.addAttribute("countNotify", countNotify);
+    }
+
+    @Override
+    public ResponseEntity<Object> changeStatusCheckNotify() {
+        try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            Account acc = accountRepository.findByUserName(username);
+
+            requestAddFriendRepository.setAllNotifyChecked(acc.getAccountId());
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }
