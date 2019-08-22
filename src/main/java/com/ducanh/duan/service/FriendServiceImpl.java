@@ -71,7 +71,7 @@ public class FriendServiceImpl implements FriendService {
             if (checkFriend != null) {
                 statusFriend = Constants.isFriend;
             } else {
-             RequestAddFriend checkRequestAddFriend =  requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(myAccount.getAccountId(), Integer.parseInt(accountId));
+             RequestAddFriend checkRequestAddFriend =  requestAddFriendRepository.findByAccountIdFromAndAccountIdToOrderByCreatedAtDesc(myAccount.getAccountId(), Integer.parseInt(accountId));
               if (checkRequestAddFriend != null) {
                   statusFriend = Constants.sentRequestFriend;
               } else {
@@ -114,7 +114,7 @@ public class FriendServiceImpl implements FriendService {
 
             Account acc = accountRepository.findByUserName(username);
 
-            RequestAddFriend  requestAddFriend = requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(acc.getAccountId(), removeAddFriendVM.getAccountIdRequest());
+            RequestAddFriend  requestAddFriend = requestAddFriendRepository.findByAccountIdFromAndAccountIdToOrderByCreatedAtDesc(acc.getAccountId(), removeAddFriendVM.getAccountIdRequest());
 
             if (requestAddFriend != null) {
                 requestAddFriendRepository.delete(requestAddFriend);
@@ -151,13 +151,16 @@ public class FriendServiceImpl implements FriendService {
 
             Account acc = accountRepository.findByUserName(username);
 
-            RequestAddFriend requestAddFriend = requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(addFriendVM.getAccountIdFrom(), acc.getAccountId());
+            RequestAddFriend requestAddFriend = requestAddFriendRepository.findByAccountIdFromAndAccountIdToOrderByCreatedAtDesc(addFriendVM.getAccountIdFrom(), acc.getAccountId());
 
             if (requestAddFriend != null) requestAddFriendRepository.delete(requestAddFriend);
 
-            RequestAddFriend requestAddFriendReverse = requestAddFriendRepository.findByAccountIdFromAndAccountIdTo(acc.getAccountId(), addFriendVM.getAccountIdFrom());
+            RequestAddFriend requestAddFriendReverse = requestAddFriendRepository.findByAccountIdFromAndAccountIdToOrderByCreatedAtDesc(acc.getAccountId(), addFriendVM.getAccountIdFrom());
 
             if (requestAddFriendReverse != null) requestAddFriendRepository.delete(requestAddFriendReverse);
+
+            friendRepository.save(new Friend(acc.getAccountId(), addFriendVM.getAccountIdFrom(), new Date()));
+            friendRepository.save(new Friend(addFriendVM.getAccountIdFrom(), acc.getAccountId(), new Date()));
 
             return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {

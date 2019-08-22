@@ -1,15 +1,10 @@
 package com.ducanh.duan.service;
 
 import com.ducanh.duan.controller.vm.ChangeAvatarVM;
-import com.ducanh.duan.dto.AlbumImageDTO;
-import com.ducanh.duan.dto.UserBasicInfo;
+import com.ducanh.duan.dto.UserBasicInfoDTO;
 import com.ducanh.duan.model.Account;
-import com.ducanh.duan.model.Images;
 import com.ducanh.duan.model.RequestAddFriend;
-import com.ducanh.duan.repository.AccountRepository;
-import com.ducanh.duan.repository.ImagesRepository;
-import com.ducanh.duan.repository.RequestAddFriendRepository;
-import com.ducanh.duan.repository.UserRepository;
+import com.ducanh.duan.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +16,6 @@ import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +36,18 @@ public class UserServiceImpl implements UserService {
     private ImagesRepository imagesRepository;
 
     @Autowired
+    private FriendRepository friendRepository;
+
+    @Autowired
     private RequestAddFriendRepository requestAddFriendRepository;
 
     private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     private Object data;
 
     @Override
-    public void initUser(Model model) throws SQLException {
-        List<Object[]> dataResult = userRepository.findBasicInfoUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        UserBasicInfo userBasicInfo = new UserBasicInfo();
+    public void initFriend(Model model, int accountId) throws Exception {
+        List<Object[]> dataResult = userRepository.findBasicInfoUserByAccountId(accountId);
+        UserBasicInfoDTO userBasicInfo = new UserBasicInfoDTO();
         if (!dataResult.isEmpty()) {
             userBasicInfo.setFullName(String.valueOf(dataResult.get(0)[0]));
             userBasicInfo.setBirthDay(String.valueOf(dataResult.get(0)[1]));
@@ -59,6 +56,20 @@ public class UserServiceImpl implements UserService {
         }
         model.addAttribute("userInfo", userBasicInfo);
     }
+
+    @Override
+    public void initUser(Model model) throws SQLException {
+        List<Object[]> dataResult = userRepository.findBasicInfoUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        UserBasicInfoDTO userBasicInfo = new UserBasicInfoDTO();
+        if (!dataResult.isEmpty()) {
+            userBasicInfo.setFullName(String.valueOf(dataResult.get(0)[0]));
+            userBasicInfo.setBirthDay(String.valueOf(dataResult.get(0)[1]));
+            userBasicInfo.setLocation(String.valueOf(dataResult.get(0)[2]));
+            userBasicInfo.setUrlAvatar(String.valueOf(dataResult.get(0)[3]));
+        }
+        model.addAttribute("userInfo", userBasicInfo);
+    }
+
 
     @Override
     @Transactional(rollbackOn = Exception.class)
@@ -124,6 +135,29 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return  new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @Override
+    public List<UserBasicInfoDTO> getListFriendOfUser() {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account acc = accountRepository.findByUserName(username);
+
+        List<Object[]> listData = friendRepository.getListFriendOfUserByAccountId(acc.getAccountId());
+
+        List<UserBasicInfoDTO> userBasicInfoDTOList = new ArrayList<>();
+
+        for(Object[] itemAcc : listData) {
+            String accountId = String.valueOf(itemAcc[0]);
+            String fullName = String.valueOf(itemAcc[5]);
+            String birthDay = String.valueOf(itemAcc[2]);
+            String location = String.valueOf(itemAcc[10]);
+            String urlAvatar = String.valueOf(itemAcc[12]);
+            UserBasicInfoDTO userBasicInfoDTO = new UserBasicInfoDTO(accountId, fullName, birthDay, location, urlAvatar);
+            userBasicInfoDTOList.add(userBasicInfoDTO);
+        }
+
+        return userBasicInfoDTOList;
     }
 
 }

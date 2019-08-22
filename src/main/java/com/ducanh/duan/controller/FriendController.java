@@ -5,7 +5,11 @@ import com.ducanh.duan.controller.vm.RemoveAddFriendVM;
 import com.ducanh.duan.controller.vm.RequestAddFriendVM;
 import com.ducanh.duan.controller.vm.UnfriendVM;
 import com.ducanh.duan.dto.DataSearchFriendDTO;
+import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.service.FriendService;
+import com.ducanh.duan.service.PostService;
+import com.ducanh.duan.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,12 @@ public class FriendController {
 
     @Autowired
     private FriendService friendService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PostService postService;
 
     @GetMapping("/search")
     public String pageSearch(@RequestParam(name = "q") String paramSearch, Model model) {
@@ -53,5 +63,13 @@ public class FriendController {
     @PostMapping("/add-friend")
     public ResponseEntity<Object> addFriend(@RequestBody AddFriendVM addFriendVM) {
         return friendService.addFriend(addFriendVM);
+    }
+
+    @GetMapping("/myfriend/{accountId}")
+    public String friendPage(@PathVariable(name = "accountId") int accountId, Model model) throws Exception {
+        userService.initFriend(model, accountId);
+        GetAllPostOfUserDTO getAllPostOfUserDTO = postService.getPostOfFriend();
+        model.addAttribute("listPost", getAllPostOfUserDTO.getPostOfUserDTOList());
+        return "friend_page";
     }
 }

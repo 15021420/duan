@@ -13,9 +13,14 @@ import java.util.List;
 
 public interface PostService {
     Post savePost(CreateNewPostVM createNewPostVM) throws IOException;
+
     List<Post> getAllPost(int userId);
+
     Post getOnePost(int userId, int postId);
+
     GetAllPostOfUserDTO getPostOfUser();
+
+    GetAllPostOfUserDTO getPostOfUserByAccountId(int accountId);
 
     ResponseEntity<Object> createCommentOfPost(CreateCommentOfPostVM createCommentOfPostVM);
 

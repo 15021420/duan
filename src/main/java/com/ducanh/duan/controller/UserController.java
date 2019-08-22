@@ -68,4 +68,10 @@ public class UserController {
     public ResponseEntity<Object> changeStatusCheckNotify() {
         return userService.changeStatusCheckNotify();
     }
+
+    @GetMapping("/list-friend")
+    public String pageListFriend(Model model) {
+        model.addAttribute("userBasicInfoDTOList", userService.getListFriendOfUser());
+        return "list_friend";
+    }
 }

@@ -3,16 +3,25 @@ package com.ducanh.duan.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserBasicInfo implements Serializable {
+public class UserBasicInfoDTO implements Serializable {
+    private String accountId;
     private String fullName;
     private String birthDay;
     private String location;
     private String urlAvatar;
 
-    public UserBasicInfo() {
+    public UserBasicInfoDTO() {
     }
 
-    public UserBasicInfo(String fullName, String birthDay, String location, String urlAvatar) {
+    public UserBasicInfoDTO(String fullName, String birthDay, String location, String urlAvatar) {
+        this.fullName = fullName;
+        this.birthDay = birthDay;
+        this.location = location;
+        this.urlAvatar = urlAvatar;
+    }
+
+    public UserBasicInfoDTO(String accountId, String fullName, String birthDay, String location, String urlAvatar) {
+        this.accountId = accountId;
         this.fullName = fullName;
         this.birthDay = birthDay;
         this.location = location;
@@ -49,5 +58,13 @@ public class UserBasicInfo implements Serializable {
 
     public void setUrlAvatar(String urlAvatar) {
         this.urlAvatar = urlAvatar;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 }

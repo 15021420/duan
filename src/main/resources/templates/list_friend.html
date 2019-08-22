@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <title>Thông báo</title>
+    <title>Danh sách bạn bè</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -33,9 +33,6 @@
                         <a class="nav-link" href="/user" th:href="@{/user}">Cá nhân</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/list-friend" th:href="@{/user/list-friend}">Bạn bè</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/user/setting" th:href="@{/user/setting}">Cài đặt</a>
                     </li>
                     <li class="nav-item">
@@ -53,14 +50,12 @@
         </nav>
     </div>
     <div class="container" style="position: sticky;">
-        <div class="row">
-            <h2>Thông báo <span class="badge badge-light" th:text="${countNotify}"></span></h2>
-        </div>
+        <h3 style="text-align: center;">Danh sách bạn bè</h3>
         <div class="row">
             <ul class="list-group">
-                <li class="list-group-item" th:each="itemNotify : ${listNotifyNotCheck}">
-                    <p th:text="${itemNotify.getAccountDisplayNameFrom()} + ' đã gửi lời mời kết bạn'"></p>
-                    <button  class="btn btn-primary btn-sm" th:attr="onclick=|doAddFriend('${itemNotify.getAccountIdFrom()}')|">Chấp nhận</button>
+                <li class="list-group-item" th:each="itemUser : ${userBasicInfoDTOList}">
+                    <img th:src="${itemUser.getUrlAvatar()}" width="20px" height="20px" style="border-radius: 50%; margin: 0 auto;"/>
+                    <a th:href="'/friend/myfriend/' + ${itemUser.getAccountId()}" th:text="${itemUser.getFullName()}"></a>
                 </li>
             </ul>
         </div>

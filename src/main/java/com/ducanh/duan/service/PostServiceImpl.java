@@ -88,7 +88,12 @@ public class PostServiceImpl implements PostService {
     public GetAllPostOfUserDTO getPostOfUser() {
         Account acc = accountRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        List<Post> userPost = postRepository.findByAccountIdOrderByCreatedAtDesc(acc.getAccountId());
+        return getPostOfUserByAccountId(acc.getAccountId());
+    }
+
+    @Override
+    public GetAllPostOfUserDTO getPostOfUserByAccountId(int accountId) {
+        List<Post> userPost = postRepository.findByAccountIdOrderByCreatedAtDesc(accountId);
         List<SinglePostOfUserDTO> singlePostOfUserDTOS = new ArrayList<>();
 
 
@@ -103,7 +108,7 @@ public class PostServiceImpl implements PostService {
 
             List<Comments> commentsList = commentsRepository.findByPostId(itemPost.getPostId());
 
-            UserLike likedPost = likeRepository.findByAccountIdAndPostId(acc.getAccountId(), itemPost.getPostId());
+            UserLike likedPost = likeRepository.findByAccountIdAndPostId(accountId, itemPost.getPostId());
 
             int countLikedPost = likeRepository.countByPostId(itemPost.getPostId());
 
