@@ -29,8 +29,20 @@ public class RegisterAccountVM implements Serializable {
     private String birthDay;
 
     @NotEmpty(message = "Họ và tên không được trống")
-    @Size(max = 15,  message = "Họ và tên không dài quá 15 ký tự")
+    @Size(max = 50,  message = "Họ và tên không dài quá 50 ký tự")
     private String fullName;
+
+    @NotEmpty(message = "Tỉnh không được  trống")
+    @Size(max = 50, message = "Tỉnh không được dài quá 50 ký tự")
+    private  String tinh;
+
+    public String getTinh() {
+        return tinh;
+    }
+
+    public void setTinh(String tinh) {
+        this.tinh = tinh;
+    }
 
     public RegisterAccountVM() {
     }

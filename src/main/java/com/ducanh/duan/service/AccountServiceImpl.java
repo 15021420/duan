@@ -52,6 +52,7 @@ public class AccountServiceImpl implements AccountService {
         accountInsert.setActive(true);
         accountInsert.setDisplayName(acc.getFullName());
         accountInsert.setUrlAvatar(urlAvatar);
+        accountInsert.setTinh(acc.getTinh());
 
         accountRepository.save(accountInsert);
 

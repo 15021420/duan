@@ -47,6 +47,11 @@
                         <input th:field="*{fullName}" th:value="${registerAccountVM.getFullName()}" type="text" class="form-control" id="fullName" placeholder="Nhập họ và tên" name="fullName" required>
                         <span class="message_error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">error</span>
                     </div>
+                    <div class="form-group">
+                        <label for="fullName">Tỉnh</label>
+                        <input th:field="*{tinh}" th:value="${registerAccountVM.getTinh()}" type="text" class="form-control" id="tinh" placeholder="Nhập tỉnh" name="tinh" required>
+                        <span class="message_error" th:if="${#fields.hasErrors('tinh')}" th:errors="*{tinh}">error</span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
