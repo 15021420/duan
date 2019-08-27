@@ -119,7 +119,7 @@
                                                     </ol>
                                                     <div class="carousel-inner">
                                                         <div class="carousel-item" th:each="itemImage, iterStat  : ${postItem.urlImage}" th:classappend="${iterStat.index == 0} ? active : '' ">
-                                                            <img style="background-position: center;" th:src="${itemImage}" width="300px" height="200px" class="d-block w-100" alt="...">
+                                                            <img style="background-position: center; object-fit: cover;" th:src="${itemImage}" width="300px" height="200px" class="d-block w-100" alt="...">
                                                         </div>
                                                         <a class="carousel-control-prev" th:href="'#carouselExampleIndicators' + ${interParentStat.index}" role="button" data-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

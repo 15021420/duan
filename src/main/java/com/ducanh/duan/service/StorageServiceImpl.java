@@ -3,6 +3,9 @@ package com.ducanh.duan.service;
 import com.ducanh.duan.dto.FileUploadDTO;
 import com.ducanh.duan.dto.MultiFileUploadDTO;
 import com.ducanh.duan.utils.DateUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -27,6 +30,8 @@ import org.springframework.http.MediaType;
 
 @Service
 public class StorageServiceImpl implements StorageService {
+
+    private Logger log = LoggerFactory.getLogger(StorageServiceImpl.class);
 
     @Value("${fileUploadDir}")
     private String fileUploadDir;
@@ -66,13 +71,13 @@ public class StorageServiceImpl implements StorageService {
 
         Files.createDirectories(fileStorageLocation);
 
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = FilenameUtils.getName(file.getOriginalFilename());
 
         Path targetLocation = fileStorageLocation.resolve(fileName);
 
         Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-        return fileStorageLocation.toAbsolutePath().toString() + File.separator + file.getOriginalFilename();
+        return fileStorageLocation.toAbsolutePath().toString() + File.separator + fileName;
     }
 
     @Override

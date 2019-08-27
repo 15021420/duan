@@ -49,6 +49,7 @@ public class ImageServiceImpl implements ImageService {
 
         for(MultipartFile file : fileToUpload) {
             String locationImage = storageService.storeFile(file);
+            log.debug("URL storage image: {}", locationImage);
             Images images = new Images();
             images.setAccountId(acc.getAccountId());
             images.setLocation(locationImage);
