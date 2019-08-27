@@ -9,7 +9,6 @@ import com.ducanh.duan.dto.GetAllPostOfUserDTO;
 import com.ducanh.duan.service.FriendService;
 import com.ducanh.duan.service.PostService;
 import com.ducanh.duan.service.UserService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
